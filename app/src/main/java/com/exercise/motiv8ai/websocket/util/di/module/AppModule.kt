@@ -29,22 +29,4 @@ object AppModule {
     @Singleton
     fun provideResourcesLoader(@ApplicationContext context: Context) = ResourcesLoader(context)
 
-/*    @Provides
-    @Singleton
-    fun provideWebSocket(@ApplicationContext context: Context, okHttpClient: OkHttpClient, resLoader: ResourcesLoader): WebSocket {
-        val request = Request.Builder().url(resLoader.getString(R.string.web_socket_base_url)).build()
-        return okHttpClient.newWebSocket(request, object: WebSocketListener() {
-            override fun onMessage(webSocket: WebSocket, text: String) {
-                Timber.d("Receiving : $text")
-            }
-
-            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-                Timber.d("Receiving bytes : ${bytes.hex()}")
-            }
-
-            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-                Timber.d("Closing : $code / $reason")
-            }
-        })
-    }*/
 }

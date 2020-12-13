@@ -18,8 +18,8 @@ abstract class GenericViewAdapter<T>(listItems: List<T>) :
         notifyDataSetChanged()
     }
 
-    fun addItemAtTop(item: T) {
-        this.listItems.add(0, item)
+    fun addItems(listItems: List<T>) {
+        this.listItems.addAll(0, listItems)
         notifyItemInserted(0)
     }
 

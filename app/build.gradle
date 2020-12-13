@@ -71,10 +71,6 @@ dependencies {
     // Okhttp
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
-    // Retrofit
-    api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    api "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"// convert a retrofit call object to a RxJava object
-    api "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
 
 /* --------- UI --------- */
 
@@ -82,16 +78,8 @@ dependencies {
     implementation "com.google.android.material:material:${versions.material}"
     // ConstraintLayout
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-    //Paging
-    implementation "androidx.paging:paging-runtime:${versions.paging}"
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerview}"
-    // Navigation components
-    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
-    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
-    // Glide - images
-    implementation "com.github.bumptech.glide:glide:${versions.glide}"
-    kapt "com.github.bumptech.glide:compiler:${versions.glide}"
 
 /* ----------- Storage ---------- */
     // Room

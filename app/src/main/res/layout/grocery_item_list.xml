@@ -7,42 +7,71 @@
     android:layout_height="130dp"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_gravity="center">
 
-    <View
+    <ImageView
         android:id="@+id/v_bg_color"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_bg"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:background="@color/colorAccent"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:lines="1"
-        android:text="dfsfsdfsdf"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_weight"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_weight"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_grocery"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="1.3KG"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="7dp"
+        app:cardMaxElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/v_bg_color"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorPrimary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_weight"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingStart="15dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="1.3kg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

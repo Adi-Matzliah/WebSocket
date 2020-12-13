@@ -21,44 +21,39 @@ class RemoteRepository @Inject constructor(
     private val resLoader: ResourcesLoader
 ) {
 
+    private var wss: WebSocket? = null
+
     suspend fun fetchGroceries() =
         withContext(coroutineContext + Dispatchers.IO) {
-            /*flow<Grocery> {*/
-            val request =
-                Request.Builder().url(resLoader.getString(R.string.web_socket_base_url)).build()
-            okHttpClient.newWebSocket(request, object : WebSocketListener() {
-                override fun onMessage(webSocket: WebSocket, text: String) {
-                    Timber.d("Receiving : $text")
-                    val grocery = gson.fromJson(text, Grocery::class.java)
-                    groceryDao.insert(grocery)
-                }
+            if (wss == null) {
+                val request =
+                    Request.Builder().url(resLoader.getString(R.string.web_socket_base_url)).build()
+                wss = okHttpClient.newWebSocket(request, object : WebSocketListener() {
+                    override fun onMessage(webSocket: WebSocket, text: String) {
+                        Timber.d("Receiving : $text")
+                        val grocery = gson.fromJson(text, Grocery::class.java)
+                        groceryDao.insert(grocery)
+                    }
 
-                override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-                    Timber.d("Receiving bytes : ${bytes.hex()}")
-                }
-
-                override fun onOpen(webSocket: WebSocket, response: Response) {
-                    super.onOpen(webSocket, response)
-                }
-
-                override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-                    super.onClosed(webSocket, code, reason)
-                }
-
-                override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-                    Timber.d("Closing : $code / $reason")
-                }
-
-                override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-                    super.onFailure(webSocket, t, response)
-                }
-            })
-            /*}*/
-
+                    override fun onFailure(
+                        webSocket: WebSocket,
+                        t: Throwable,
+                        response: Response?
+                    ) {
+                        super.onFailure(webSocket, t, response)
+                        Timber.e("Error : ${t.message}")
+                    }
+                })
+            }
         }
 
     fun getGroceries() =
-        groceryDao.getLast()
+        groceryDao.getAll()
+
+    fun stopWebSocket() {
+        wss?.cancel()
+        wss = null
+    }
 
 }
 

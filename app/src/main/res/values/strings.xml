@@ -3,4 +3,6 @@
     <string name="stop">Stop</string>
     <string name="start">Start</string>
     <string name="web_socket_base_url">wss://superdo-groceries.herokuapp.com/receive</string>
+    <string name="buttons_title">Click to start or stop the feed:</string>
+    <string name="type_filter_title">Type filter:</string>
 </resources>

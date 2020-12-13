@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GroceryDao : BaseDao<Grocery> {
 
-    @Query("SELECT * FROM groceries ORDER BY id DESC LIMIT 1")
-    fun getLast(): Flow<Grocery>
+    @Query("SELECT * FROM groceries ORDER BY id DESC")
+    fun getAll(): Flow<List<Grocery>>
 
     @Query("DELETE FROM groceries")
     fun deleteAll()
